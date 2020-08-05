@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import FirstPage from './FirstPage';
 import SecondPge from './SecondPage';
+import SummaryPage from './SummaryPage';
 
 const MainPage = () => {
     const [step, setStep] = useState(1);
@@ -44,7 +45,8 @@ const MainPage = () => {
     }
     const handleSteps = () =>{
         if(step === 1)
-            return (<FirstPage
+            return (
+            <FirstPage
                 handleFirstnameChange={handleFirstnameChange}
                 handleLastnameChange={handleLastnameChange}
                 handleEmailChange={handleEmailChange}
@@ -54,19 +56,39 @@ const MainPage = () => {
                 email={email}
                 phone={phone}
                 nextStep={nextStep}
-            />)
+            />
+            )
+            
          if(step === 2){
-             return (<SecondPge 
+             return (
+             <SecondPge 
                 handleOfficeChange={handleOfficeChange}
-                handleJobtitleChange={handleJobtitleChange}
+                handleJobtilteChange={handleJobtitleChange}
+                office={office}
+                jobtitle={jobtitle}
                 prevStep={prevStep}
-                />)
+                nextStep={nextStep}
+                />
+                )
+         }
+         if(step === 3){
+             return (
+                    <div>Summary of the form:
+                        <SummaryPage
+                            firstname={firstname}
+                            lastname={lastname}
+                            email={email}
+                            phone={phone}             
+                            prevStep={prevStep}
+                            />
+                    </div>
+                )
          }   
     }
 
     return (
         <div className="container">
-            Mainpage
+            
             {handleSteps()}
         </div>
     )
